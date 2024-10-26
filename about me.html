@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>درباره من</title>
+    <style>
+        @font-face {
+            font-family: 'BTitr';
+            src: url('https://raw.githubusercontent.com/AliAyati1386/Font/master/BTitrBd.ttf') format('truetype');
+        }
+        
+        @font-face {
+            font-family: 'BNazanin';
+            src: url('https://raw.githubusercontent.com/AliAyati1386/Font/master/BNazanin.ttf') format('truetype');
+        }
+
+        body {
+            background-color: #f0f0f0;
+            color: #333;
+            font-family: 'BNazanin', Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            direction: rtl;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        h1 {
+            color: #007BFF;
+            font-family: 'BTitr', Arial, sans-serif;
+        }
+
+        .about-me {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 600px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, border-color 0.3s;
+            opacity: 0; /* شفافیت اولیه */
+            transform: translateY(20px); /* موقعیت اولیه */
+            animation: slideUp 0.5s forwards; /* اضافه کردن انیمیشن */
+        }
+
+        @keyframes slideUp {
+            to {
+                opacity: 1; /* شفافیت نهایی */
+                transform: translateY(0); /* موقعیت نهایی */
+            }
+        }
+
+        .about-me p {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        #backButton, #themeToggle {
+            position: absolute;
+            padding: 10px;
+            background-color: #00ffff;
+            color: #000;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'BTitr', Arial, sans-serif;
+        }
+
+        #backButton {
+            top: 10px;
+            left: 10px;
+        }
+
+        #themeToggle {
+            top: 10px;
+            right: 10px;
+        }
+
+        /* Styles for dark theme */
+        .light-theme {
+            background-color: #333;
+            color: #f0f0f0;
+        }
+
+        .light-theme .about-me {
+            background-color: #444;
+            border-color: #555;
+        }
+
+        .light-theme #backButton,
+        .light-theme #themeToggle {
+            background-color: #007BFF;
+            color: #fff;
+        }
+    </style>
+    <script>
+        function toggleTheme() {
+            document.body.classList.toggle('light-theme');
+            const theme = document.body.classList.contains('light-theme') ? "light" : "dark";
+            setCookie("theme", theme, 30);
+        }
+
+        function setCookie(name, value, days) {
+            const date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            document.cookie = name + "=" + value + ";expires=" + date.toUTCString() + ";path=/";
+        }
+
+        function getCookie(name) {
+            const decodedCookie = decodeURIComponent(document.cookie);
+            const ca = decodedCookie.split(';');
+            for(let i = 0; i < ca.length; i++) {
+                let c = ca[i].trim();
+                if (c.indexOf(name + "=") === 0) {
+                    return c.substring(name.length + 1);
+                }
+            }
+            return "";
+        }
+
+        window.onload = function() {
+            const theme = getCookie("theme");
+            if (theme === "light") {
+                document.body.classList.add("light-theme");
+            }
+        };
+    </script>
+</head>
+<body>
+    <button id="backButton" onclick="window.location.href='https://ayatblog.blogfa.com/'">بازگشت به صفحه اصلی</button>
+    <button id="themeToggle" onclick="toggleTheme()">تغییر تم</button>
+    
+    <h1>درباره من</h1>
+    <div class="about-me">
+        <div class="content">
+            <p>سلام! من علی آیتی غفاری هستم و در حال تحصیل رشته ریاضی فیزیک هستم. از دوران کودکی علاقه زیادی به علوم پایه و به ویژه ریاضی داشته‌ام. در این مسیر، متوجه شدم که می‌توانم با استفاده از مهارت‌های ریاضی خود، وارد دنیای برنامه‌نویسی شوم. هدف از ایجاد این وبلاگ، آموزش برنامه‌نویسی به شماست و من قصد دارم تجربیات خود را در این زمینه با شما به اشتراک بگذارم.</p>
+
+            <p>من خودم نیز علاقه شدیدی به برنامه‌نویسی دارم و تقریباً 6 ماه است که به طور جدی در این حوزه فعالیت می‌کنم. در این مدت، زبان برنامه‌نویسی پایتون را به عنوان اولین زبان برنامه‌نویسی خود انتخاب کردم. به نظر من، پایتون زبانی بسیار کاربرپسند و قدرتمند است که به من کمک کرده تا مفاهیم برنامه‌نویسی را به خوبی درک کنم و پروژه‌های متنوعی را توسعه دهم.</p>
+
+            <p>همچنین، به عنوان یک تایپیست نیز کسب درآمد می‌کنم و این کار به من این امکان را می‌دهد که در کنار تحصیلاتم، تجربه عملی بیشتری کسب کنم. این دو حوزه به من کمک کرده‌اند تا توانایی‌های خود را بهبود بخشم و درک بهتری از کار تیمی و مدیریت زمان پیدا کنم. برنامه‌نویسی واقعاً چیز جالب و باحالی است که به من اجازه می‌دهد خلاقیتم را به کار ببرم و راه‌حل‌های نوآورانه‌ای برای چالش‌های مختلف پیدا کنم.</p>
+
+            <p>علاوه بر برنامه‌نویسی، به موضوعات مختلفی مانند هوش مصنوعی، یادگیری ماشین و توسعه وب نیز علاقه دارم. در آینده، قصد دارم در این حوزه‌ها بیشتر یاد بگیرم و پروژه‌های مختلفی را پیاده‌سازی کنم. من به این باور دارم که یادگیری یک فرآیند همیشگی است و هر روز فرصت‌های جدیدی برای یادگیری و رشد وجود دارد.</p>
+
+            <p>در این وبلاگ، مطالب متنوعی درباره برنامه‌نویسی، منابع آموزشی، نکات و ترفندهای مفید و تجربیات شخصی‌ام به اشتراک می‌گذارم. امیدوارم که با مطالبی که در این وبلاگ ارائه می‌دهم، بتوانم به شما کمک کنم تا در این مسیر گام بردارید و از برنامه‌نویسی لذت ببرید.</p>
+
+            <p>در نهایت، امیدوارم بتوانم تجربیات خود را با شما به اشتراک بگذارم و از نظرات و سوالات شما بهره‌مند شوم. با هم می‌توانیم به یک جامعه یادگیری تبدیل شویم و از یکدیگر الهام بگیریم.</p>
+        </div>
+    </div>
+
+<script type="text/javascript">
+  !function(){var i="jiA40f",a=window,d=document;function g(){var g=d.createElement("script"),s="https://www.goftino.com/widget/"+i,l=localStorage.getItem("goftino_"+i);g.async=!0,g.src=l?s+"?o="+l:s;d.getElementsByTagName("head")[0].appendChild(g);}"complete"===d.readyState?g():a.attachEvent?a.attachEvent("onload",g):a.addEventListener("load",g,!1);}();
+</script>
+</body>
+</html>

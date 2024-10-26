@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><-BlogTitle-></title>
+    <style>
+        @font-face {
+            font-family: 'BTitr';
+            src: url('https://raw.githubusercontent.com/AliAyati1386/Font/master/BTitrBd.ttf') format('truetype');
+        }
+        
+        @font-face {
+            font-family: 'BNazanin';
+            src: url('https://raw.githubusercontent.com/AliAyati1386/Font/master/BNazanin.ttf') format('truetype');
+        }
+
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            direction: rtl;
+            unicode-bidi: embed;
+            margin: 0;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .light-theme {
+            background-color: #ffffff;
+            color: #000000;
+        }
+        #themeToggle {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 10px;
+            background-color: #00ffff;
+            color: #000;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'BTitr', Arial, sans-serif;
+        }
+        #wrapper {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+            text-align: center;
+        }
+        .post {
+            background-color: #1e1e1e;
+            border: 3px solid #00ffff;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+            cursor: pointer;
+            animation: neonPulse 1.5s infinite alternate;
+        }
+        .light-theme .post {
+            background-color: #f0f0f0;
+            border-color: #ff0000;
+        }
+        h1 {
+            color: #00ffff;
+            font-family: 'BTitr', Arial, sans-serif;
+            animation: neonPulse 1.5s infinite alternate;
+        }
+        .light-theme h1 {
+            color: #000000;
+        }
+        h2 {
+            font-family: 'BTitr', Arial, sans-serif;
+            color: #ffea00;
+            text-shadow: 0 0 5px #ffea00, 0 0 10px #ffea00;
+            margin: 0;
+        }
+        .light-theme h2 {
+            color: #ff0000;
+            text-shadow: 0 0 5px #000000, 0 0 10px #000000;
+        }
+        #postContentWrapper {
+            display: none;
+            background-color: #1e1e1e;
+            border: 3px solid #ff00ff;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 0 10px rgba(255, 0, 255, 0.5);
+            animation: neonPulse 1.5s infinite alternate;
+        }
+        .light-theme #postContentWrapper {
+            background-color: #f9f9f9;
+            border-color: #ff00ff;
+        }
+        #backButton {
+            display: none;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #00ffff;
+            color: #000;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        p {
+            font-family: 'BNazanin', Arial, sans-serif;
+        }
+
+        @keyframes neonPulse {
+            0% {
+                text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 15px #00ffff;
+            }
+            100% {
+                text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff;
+            }
+        }
+    </style>
+    <script>
+        // تابعی برای تنظیم کوکی
+        function setCookie(name, value, days) {
+            const date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            document.cookie = name + "=" + value + ";expires=" + date.toUTCString() + ";path=/";
+        }
+
+        // تابعی برای دریافت مقدار کوکی
+        function getCookie(name) {
+            const decodedCookie = decodeURIComponent(document.cookie);
+            const ca = decodedCookie.split(';');
+            for(let i = 0; i < ca.length; i++) {
+                let c = ca[i].trim();
+                if (c.indexOf(name + "=") === 0) {
+                    return c.substring(name.length + 1);
+                }
+            }
+            return "";
+        }
+
+        // تغییر تم و ذخیره آن در کوکی
+        function toggleTheme() {
+            document.body.classList.toggle('light-theme');
+            const theme = document.body.classList.contains('light-theme') ? "light" : "dark";
+            setCookie("theme", theme, 30);
+        }
+
+        // بارگذاری تم از کوکی هنگام لود صفحه
+        window.onload = function() {
+            const theme = getCookie("theme");
+            if (theme === "light") {
+                document.body.classList.add("light-theme");
+            }
+        };
+
+        function showPost(content) {
+            document.getElementById('content').style.display = 'none';
+            document.getElementById('postContent').innerHTML = content;
+            document.getElementById('postContentWrapper').style.display = 'block';
+            document.getElementById('backButton').style.display = 'block';
+        }
+
+        function goBack() {
+            document.getElementById('content').style.display = 'block';
+            document.getElementById('postContentWrapper').style.display = 'none';
+            document.getElementById('backButton').style.display = 'none';
+        }
+    </script>
+</head>
+<body>
+    <button id="themeToggle" onclick="toggleTheme()">تغییر تم</button>
+    
+    <div id="wrapper">
+        <h1><-BlogTitle-></h1>
+        
+        <div id="content">
+            <BLOGFA>
+                <div class="post" onclick="showPost('<-PostContent-><BlogPostTagsBlock><br>برچسب‌ها: <BlogPostTags separator=\", \"><a href=\"<-TagLink->\"><-TagName-></a></BlogPostTags></BlogPostTagsBlock>')">
+                    <h2><-PostTitle-></h2>
+                    <p><-PostExcerpt-></p>
+                </div>
+            </BLOGFA>
+        </div>
+
+        <div id="postContentWrapper">
+            <div id="postContent"></div>
+            <p>Written by Ali Ayati Qaffari</p>
+        </div>
+
+        <button id="backButton" onclick="goBack()">بازگشت</button>
+
+        <div class="copyright">
+            <p>© 2024 تمامی حقوق محفوظ است.</p>
+        </div>
+    </div>
+</body>
+</html>

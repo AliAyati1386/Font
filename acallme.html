@@ -1,0 +1,137 @@
+<BLOGFA>
+    <!DOCTYPE html>
+    <html lang="fa">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>تماس با ما</title>
+        <style>
+            @font-face {
+                font-family: 'BTitr';
+                src: url('https://raw.githubusercontent.com/AliAyati1386/Font/master/BTitrBd.ttf') format('truetype');
+            }
+            
+            @font-face {
+                font-family: 'BNazanin';
+                src: url('https://raw.githubusercontent.com/AliAyati1386/Font/master/BNazanin.ttf') format('truetype');
+            }
+    
+            body {
+                background-color: #f0f0f0;
+                color: #333;
+                font-family: 'BNazanin', Arial, sans-serif;
+                text-align: center;
+                padding: 20px;
+                direction: rtl;
+                transition: background-color 0.3s, color 0.3s;
+            }
+            h1 {
+                color: #007BFF;
+                font-family: 'BTitr', Arial, sans-serif;
+            }
+            .contact-info {
+                background-color: #fff;
+                border: 1px solid #ccc;
+                border-radius: 10px;
+                padding: 20px;
+                margin: 20px auto;
+                max-width: 600px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                transition: background-color 0.3s, border-color 0.3s;
+                opacity: 0; /* شفافیت اولیه */
+                transform: translateY(20px); /* موقعیت اولیه */
+                animation: slideUp 0.5s forwards; /* اضافه کردن انیمیشن */
+            }
+            @keyframes slideUp {
+                to {
+                    opacity: 1; /* شفافیت نهایی */
+                    transform: translateY(0); /* موقعیت نهایی */
+                }
+            }
+            .contact-info p {
+                font-size: 18px;
+                margin: 10px 0;
+            }
+            #backButton, #themeToggle {
+                position: absolute;
+                padding: 10px;
+                background-color: #00ffff;
+                color: #000;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                font-family: 'BTitr', Arial, sans-serif;
+            }
+            #backButton {
+                top: 10px;
+                left: 10px;
+            }
+            #themeToggle {
+                top: 10px;
+                right: 10px;
+            }
+            /* Styles for dark theme */
+            .light-theme {
+                background-color: #333;
+                color: #f0f0f0;
+            }
+            .light-theme .contact-info {
+                background-color: #444;
+                border-color: #555;
+            }
+            .light-theme #backButton,
+            .light-theme #themeToggle {
+                background-color: #007BFF;
+                color: #fff;
+            }
+        </style>
+        <script>
+            function toggleTheme() {
+                document.body.classList.toggle('light-theme');
+                const theme = document.body.classList.contains('light-theme') ? "light" : "dark";
+                setCookie("theme", theme, 30);
+            }
+    
+            function setCookie(name, value, days) {
+                const date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                document.cookie = name + "=" + value + ";expires=" + date.toUTCString() + ";path=/";
+            }
+    
+            function getCookie(name) {
+                const decodedCookie = decodeURIComponent(document.cookie);
+                const ca = decodedCookie.split(';');
+                for(let i = 0; i < ca.length; i++) {
+                    let c = ca[i].trim();
+                    if (c.indexOf(name + "=") === 0) {
+                        return c.substring(name.length + 1);
+                    }
+                }
+                return "";
+            }
+    
+            window.onload = function() {
+                const theme = getCookie("theme");
+                if (theme === "light") {
+                    document.body.classList.add("light-theme");
+                }
+            };
+        </script>
+    </head>
+    <body>
+        <button id="backButton" onclick="window.location.href='https://ayatblog.blogfa.com/'">بازگشت به صفحه اصلی</button>
+        <button id="themeToggle" onclick="toggleTheme()">تغییر تم</button>
+        
+        <h1>تماس با ما</h1>
+        <div class="contact-info">
+            <p>برای هرگونه سوال یا نیاز به اطلاعات بیشتر، با ما تماس بگیرید:</p>
+            <p>📞 شماره تماس: <a href="tel:09166568552">09166568552</a></p>
+            <p>✉️ ایمیل: <a href="mailto:ayatiali910@gmail.com">ayatiali910@gmail.com</a></p>
+            <p>ما در اسرع وقت به شما پاسخ خواهیم داد.</p>
+        </div>
+    <script type="text/javascript">
+      !function(){var i="jiA40f",a=window,d=document;function g(){var g=d.createElement("script"),s="https://www.goftino.com/widget/"+i,l=localStorage.getItem("goftino_"+i);g.async=!0,g.src=l?s+"?o="+l:s;d.getElementsByTagName("head")[0].appendChild(g);}"complete"===d.readyState?g():a.attachEvent?a.attachEvent("onload",g):a.addEventListener("load",g,!1);}();
+    </script>
+    </body>
+    </html>
+    
